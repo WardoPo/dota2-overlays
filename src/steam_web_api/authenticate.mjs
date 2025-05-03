@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const API_KEY = fs.readFileSync('API_KEY', 'utf8').trim();
+const API_KEY = fs.readFileSync('src/steam_web_api/API KEY', 'utf8').trim();
 
 function authenticate(url){
     /**
