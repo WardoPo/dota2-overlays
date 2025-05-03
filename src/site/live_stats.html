@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stats</title>
+</head>
+
+<body>
+    <h1>Live Stats</h1>
+
+    <pre id="stats">Loading stats...</pre>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const fetchStats = async () => {
+                try {
+                    const steamServerId = localStorage.getItem('steam_server_id'); // Retrieve the argument from local storage
+                    if (!steamServerId) {
+                        throw new Error('Steam Server ID not found in local storage');
+                    }
+                    const response = await fetch(`/api/live-stats?serverSteamID=${steamServerId}`);
+                    const data = await response.json();
+                    document.getElementById('stats').textContent = JSON.stringify(data, null, 2);
+                } catch (error) {
+                    document.getElementById('stats').textContent = 'Error fetching stats: ' + error.message;
+                }
+            };
+
+            // Fetch stats immediately and then every second
+            fetchStats();
+            setInterval(fetchStats, 1000);
+        });
+    </script>
+</body>
+
+</html>

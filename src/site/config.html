@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Server Config</title>
+</head>
+
+<body>
+    <h1>Steam Server Configuration</h1>
+    <form id="serverForm">
+        <label for="steam_server_id">Steam Server ID:</label>
+        <input type="text" id="steam_server_id" name="steam_server_id" required>
+        <button type="submit">Save</button>
+    </form>
+
+    <script>
+        document.getElementById('serverForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const steamServerId = document.getElementById('steam_server_id').value;
+
+            const response = await fetch(`/api/set-steam-server-id?serverSteamID=${steamServerId}`);
+            console.debug(response.status)
+
+            localStorage.setItem('steam_server_id', steamServerId);
+            alert('Steam Server ID saved to local storage!');
+        });
+    </script>
+</body>
+
+</html>

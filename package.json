@@ -1,0 +1,15 @@
+{
+  "name": "dota2-overlays",
+  "version": "1.0.0",
+  "description": "Generate streaming overlays for Dota 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WardoPo",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotaconstants": "^9.4.0"
+  }
+}

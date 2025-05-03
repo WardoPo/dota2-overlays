@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Details</title>
+</head>
+
+<body>
+    <h1>Match Details</h1>
+    <p>Match details can only be retrieved after the match has finished</p>
+    <pre id="details">Loading match details...</pre>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const fetchMatchDetails = async () => {
+                try {
+                    localStorage.setItem('match_id', '8276716197'); // Set a default match ID for testing
+                    const matchId = localStorage.getItem('match_id'); // Retrieve the argument from local storage
+                    if (!matchId) {
+                        throw new Error('Match ID not found in local storage');
+                    }
+                    const response = await fetch(`/api/get-match-details?matchID=${matchId}`);
+                    const data = await response.json();
+                    document.getElementById('details').textContent = JSON.stringify(data, null, 2);
+                } catch (error) {
+                    document.getElementById('details').textContent = 'Error fetching match details: ' + error.message;
+                }
+            };
+
+            // Fetch match details immediately and then every second
+            fetchMatchDetails();
+            setInterval(fetchMatchDetails, 1000);
+        });
+    </script>
+</body>
+
+</html>

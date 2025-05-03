@@ -1,0 +1,91 @@
+* {
+    margin: unset;
+}
+
+main {
+    background-color: transparent;
+    width: 100vw;
+    height: 300px;
+    display: flex;
+}
+
+central-timer {
+    background-color: darkred;
+    width: 20%;
+    height: 100%;
+}
+
+radiant-dashboard,
+dire-dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+radiant-dashboard {
+    background-image: url('/site/static/img/radiant.jpg');
+}
+
+dire-dashboard {
+    background-image: url('/site/static/img/dire.jpg');
+}
+
+radiant-bans,
+dire-bans {
+    display: flex;
+    background-color: none;
+    width: 100%;
+    height: 20%;
+
+    img {
+        width: 14.3%;
+        max-width: 14.3%;
+        object-fit: cover;
+    }
+}
+
+radiant-picks,
+dire-picks {
+    display: flex;
+    width: 100%;
+    height: 80%;
+
+    video {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    animated-overlay {
+        width: 20%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        &.shine {
+            background-color: #00000088;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top, #ffffff00 0%, #ffffffdd 50%, #ffffff00 75%, #ffffff00 100%);
+                animation: shine 1s linear forwards;
+            }
+        }
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(0, 100%);
+    }
+
+    100% {
+        transform: translate(0, -100%);
+    }
+}
