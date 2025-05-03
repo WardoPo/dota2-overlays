@@ -19,17 +19,28 @@ radiant-dashboard,
 dire-dashboard {
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 40%;
+    height: 100%;
+    background-color: black;
+}
+
+radiant-dashboard::before,
+dire-dashboard::before {
+    content: "";
+    position: absolute;
+    width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
+    opacity: 0.2;
 }
 
-radiant-dashboard {
+radiant-dashboard::before {
     background-image: url('/site/static/img/radiant.jpg');
 }
 
-dire-dashboard {
+dire-dashboard::before {
     background-image: url('/site/static/img/dire.jpg');
 }
 
@@ -68,6 +79,7 @@ dire-picks {
 
         &.shine {
             background-color: #00000088;
+
             &::after {
                 content: '';
                 position: absolute;
